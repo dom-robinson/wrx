@@ -18,3 +18,11 @@ atrm 176
 For email forwarding and so on use https://doc.ubuntu-fr.org/msmtp for this release of raspbian
 
 I used lighttpd as a basic webserver with its root at /home/pi/weather
+
+
+Add a pi crontab - adjust the +2 to maintain .s and wav IQ capture files for more than 2 days. 
+Similarly +60 adjustments for removing old files (60 days default).
+
+1 0 * * * /home/pi/weather/predict/schedule_all.sh
+0 0 * * * find /home/pi/weather/tests/* -mtime +2 -type f -delete
+0 0 * * * find /home/pi/weather/archives/* -mtime +60 -type f -delete
