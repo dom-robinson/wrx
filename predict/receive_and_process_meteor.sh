@@ -48,7 +48,7 @@ if [ -f "${3}_0.bmp" ]; then
 	#update the webpage latest
 	cp ${3}.jpg ./latest/latestmeteor-nolabel.jpg
 	composite label:${3} ./latest/latestmeteor-nolabel.jpg ./latest/latestmeteor.jpg
-	mpack -s ${3} ./latest/latestnoaa.png wrx.o0gnwd@zapiermail.com
+	mpack -s ${3} ./latest/latestnoaa.jpg wrx.o0gnwd@zapiermail.com
 	rm ./latest/latestmeteor-nolabel.jpg
 
 	echo "Processed"
