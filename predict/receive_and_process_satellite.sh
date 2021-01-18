@@ -31,21 +31,38 @@ if [ -e $3.wav ]
 	/usr/local/bin/wxtoimg -m ${3}-map.png -e MCIR $3.wav ${3}.MCIR.png
 	/usr/local/bin/wxtoimg -m ${3}-map.png -e MSA $3.wav ${3}.MSA.png
 
-	label=${3##*/}
-	#update webpage latest and label it.
-	cp ${3}.MCIR.png ./latest/latestnoaa-nolabel.png
-	composite label:$label ./latest/latestnoaa-nolabel.png ./latest/latestnoaa.png
-	mpack -s $label ./latest/latestnoaa.png wrx.o0gnwd@zapiermail.com
-	rm ./latest/latestnoaa-nolabel.png
+     	#only push GOOD results (by filesize indicator)
+        FILESIZE=$(stat -c%s ${3}.MCIR.png)
+        MINSIZE =1900 
 
-	#remove map now it is blended.
-	rm ${3}-map.png
+
+        if [ (( $FILESIZE > MINSIZE)) ]; then
+                echo "GOOD Acquisition" 
+                label=${3##*/}
+                #update webpage latest and label it.
+                cp ${3}.MCIR.png ./latest/latestnoaa-nolabel.png
+                composite label:$label ./latest/latestnoaa-nolabel.png ./latest/latestnoaa.png
+                mpack -s $label ./latest/latestnoaa.png wrx.o0gnwd@zapiermail.com
+                rm ./latest/latestnoaa-nolabel.png
+
+                #remove map now it is blended.
+                rm ${3}-map.png
+
+                #for now keep wav archive for usual garbage collect.
+                mv ${3}.wav /home/pi/weather/tests/
+
+                #publish to archive
+                mv ${3}* /home/pi/weather/archives/${NOW}/
+        else 
+                echo "UNUSABLE Acquisition"
+                #for now keep wav archive for usual garbage collect.
+                mv ${3}.wav /home/pi/weather/tests/
+
+                #clearup all bad output
+                rm ${3}* 
+        fi
+
 fi
 
-
-
-# moves output files to the archive
-mv ${3}.wav /home/pi/weather/tests/
-mv ${3}* /home/pi/weather/archives/${NOW}/
 
 
