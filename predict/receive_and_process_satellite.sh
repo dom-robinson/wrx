@@ -42,7 +42,7 @@ if [ -e $3.wav ]
                 #update webpage latest and label it.
                 cp ${3}.MCIR.png ./latest/latestnoaa-nolabel.png
                 composite label:$label ./latest/latestnoaa-nolabel.png ./latest/latestnoaa.png
-                mpack -s $label ./latest/latestnoaa.png wrx.o0gnwd@zapiermail.com
+                mpack -s $label ./latest/latestnoaa.png wrx.o@zapiermail.com
                 rm ./latest/latestnoaa-nolabel.png
 
                 #remove map now it is blended.
