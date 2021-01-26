@@ -45,13 +45,25 @@ if [ -f "${3}_0.bmp" ]; then
         fi
 
 
-	#update the webpage latest
-	cp ${3}.jpg ./latest/latestmeteor-nolabel.jpg
-	composite label:${3} ./latest/latestmeteor-nolabel.jpg ./latest/latestmeteor.jpg
-	mpack -s ${3} ./latest/latestnoaa.jpg wrx.o0@zapiermail.com
-	rm ./latest/latestmeteor-nolabel.jpg
 
-	echo "Processed"
+        #only update if images is good - evaluate from logic that rect is usually larger than bmp when good.
+        recfilesize=$(wc -c < ${3}-rectified.png)
+        compfilesize=$(wc -c < ${3}_0.bmp)
+
+        if [ $recfilesize -ge $compfilesize ]; then
+
+                #update the webpage latest
+                cp ${3}.jpg ./latest/latestmeteor-nolabel.jpg
+                composite label:${3} ./latest/latestmeteor-nolabel.jpg ./latest/latestmeteor.jpg
+                mpack -s ${3} ./latest/latestmeteor.jpg wrx.o0gnwd@zapiermail.com
+                rm ./latest/latestmeteor-nolabel.jpg
+
+                echo "Processed"
+
+        else
+                echo "Bad Image"
+        fi
+
 
 #tidy up
 #        rm $3.bmp
@@ -69,7 +81,6 @@ fi
 
 #dom: lets not remove this for moment
 mv ${3}.s ./tests/
-#rm ${3}.s
 
 # moves all output files to the archive folder
 mv ${3}* ./archives/${NOW}/

@@ -1,24 +1,27 @@
-191	Wed Jan 13 11:41:00 2021 a pi
-/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 18" 137.9125 /home/pi/weather/NOAA1820210113-114105 /home/pi/weather/predict/weather.tle 1610538065 855
+515	Sun Jan 24 06:35:00 2021 a pi
+/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 19" 137.1000 /home/pi/weather/NOAA1920210124-063555 /home/pi/weather/predict/weather.tle 1611470155 989
 
-189	Wed Jan 13 16:55:00 2021 a pi
-/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 19" 137.1000 /home/pi/weather/NOAA1920210113-165534 /home/pi/weather/predict/weather.tle 1610556934 962
+520	Sun Jan 24 08:05:00 2021 a pi
+/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 15" 137.6200 /home/pi/weather/NOAA1520210124-080557 /home/pi/weather/predict/weather.tle 1611475557 974
 
-194	Wed Jan 13 17:29:00 2021 a pi
-/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 15" 137.6200 /home/pi/weather/NOAA1520210113-172916 /home/pi/weather/predict/weather.tle 1610558956 873
+522	Sun Jan 24 08:35:00 2021 a pi
+/home/pi/weather/predict/receive_and_process_meteor.sh "METEOR-M 2" 137.1000 METEOR-M220210124-083510 /home/pi/weather/predict/weather.tle 1611477310 932
 
-190	Wed Jan 13 18:36:00 2021 a pi
-/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 19" 137.1000 /home/pi/weather/NOAA1920210113-183634 /home/pi/weather/predict/weather.tle 1610562994 944
+517	Sun Jan 24 09:30:00 2021 a pi
+/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 18" 137.9125 /home/pi/weather/NOAA1820210124-093010 /home/pi/weather/predict/weather.tle 1611480610 942
 
-196	Wed Jan 13 18:41:00 2021 a pi
-/home/pi/weather/predict/receive_and_process_meteor.sh "METEOR-M 2" 137.1000 /home/pi/weather/METEOR-M220210113-184120 /home/pi/weather/predict/weather.tle 1610563280 943
+518	Sun Jan 24 11:11:00 2021 a pi
+/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 18" 137.9125 /home/pi/weather/NOAA1820210124-111100 /home/pi/weather/predict/weather.tle 1611486660 909
 
-195	Wed Jan 13 19:08:00 2021 a pi
-/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 15" 137.6200 /home/pi/weather/NOAA1520210113-190836 /home/pi/weather/predict/weather.tle 1610564916 923
+521	Sun Jan 24 17:51:00 2021 a pi
+/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 15" 137.6200 /home/pi/weather/NOAA1520210124-175135 /home/pi/weather/predict/weather.tle 1611510695 922
 
-192	Wed Jan 13 19:51:00 2021 a pi
-/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 18" 137.9125 /home/pi/weather/NOAA1820210113-195129 /home/pi/weather/predict/weather.tle 1610567489 929
+516	Sun Jan 24 18:07:00 2021 a pi
+/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 19" 137.1000 /home/pi/weather/NOAA1920210124-180733 /home/pi/weather/predict/weather.tle 1611511653 976
 
-193	Wed Jan 13 21:31:00 2021 a pi
-/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 18" 137.9125 /home/pi/weather/NOAA1820210113-213159 /home/pi/weather/predict/weather.tle 1610573519 986
+523	Sun Jan 24 18:22:00 2021 a pi
+/home/pi/weather/predict/receive_and_process_meteor.sh "METEOR-M 2" 137.1000 METEOR-M220210124-182248 /home/pi/weather/predict/weather.tle 1611512568 960
+
+519	Sun Jan 24 21:01:00 2021 a pi
+/home/pi/weather/predict/receive_and_process_satellite.sh "NOAA 18" 137.9125 /home/pi/weather/NOAA1820210124-210144 /home/pi/weather/predict/weather.tle 1611522104 989
 

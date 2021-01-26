@@ -22,6 +22,7 @@ sudo timeout $6 rtl_fm -f ${2}M -g 43.9 -p 3 -s 48k -E deemp -F 9 - | sox -t raw
 
 #dom: image processing
 PassStart=`expr $5 + 90`
+echo "PassStart" $PassStart
 
 if [ -e $3.wav ]
  then
@@ -31,38 +32,43 @@ if [ -e $3.wav ]
 	/usr/local/bin/wxtoimg -m ${3}-map.png -e MCIR $3.wav ${3}.MCIR.png
 	/usr/local/bin/wxtoimg -m ${3}-map.png -e MSA $3.wav ${3}.MSA.png
 
-     	#only push GOOD results (by filesize indicator)
-        FILESIZE=$(stat -c%s ${3}.MCIR.png)
-        MINSIZE =1900 
 
+	#only push GOOD results by filesize indicator
+	filesize=$(stat -c%s ${3}.MCIR.png)
+	minsize=1900 
 
-        if [ (( $FILESIZE > MINSIZE)) ]; then
-                echo "GOOD Acquisition" 
-                label=${3##*/}
-                #update webpage latest and label it.
-                cp ${3}.MCIR.png ./latest/latestnoaa-nolabel.png
-                composite label:$label ./latest/latestnoaa-nolabel.png ./latest/latestnoaa.png
-                mpack -s $label ./latest/latestnoaa.png wrx.o@zapiermail.com
-                rm ./latest/latestnoaa-nolabel.png
+	if [[ "$filesize" -gt "$minsize" ]]; then
 
-                #remove map now it is blended.
-                rm ${3}-map.png
+		echo "GOOD Acquisition" 
 
-                #for now keep wav archive for usual garbage collect.
-                mv ${3}.wav /home/pi/weather/tests/
+		label=${3##*/}
 
-                #publish to archive
-                mv ${3}* /home/pi/weather/archives/${NOW}/
-        else 
-                echo "UNUSABLE Acquisition"
-                #for now keep wav archive for usual garbage collect.
-                mv ${3}.wav /home/pi/weather/tests/
+		#update webpage latest and label it.
+		cp ${3}.MCIR.png ./latest/latestnoaa-nolabel.png
+		composite label:$label ./latest/latestnoaa-nolabel.png ./latest/latestnoaa.png
+		mpack -s $label ./latest/latestnoaa.png wrx.o0gnwd@zapiermail.com
+		rm ./latest/latestnoaa-nolabel.png
 
-                #clearup all bad output
+		#remove map now it is blended.
+        	rm ${3}-map.png
+
+		#for now keep wav archive for usual garbage collect.
+		mv ${3}.wav /home/pi/weather/tests/
+
+		#publish to archive
+		mv ${3}* /home/pi/weather/archives/${NOW}/
+	else 
+		echo "UNUSABLE Acquisition"
+		#for now keep wav archive for usual garbage collect.
+		mv ${3}.wav /home/pi/weather/tests/
+
+		#clearup all bad output
                 rm ${3}* 
-        fi
+	fi
 
 fi
+
+
 
 
 
