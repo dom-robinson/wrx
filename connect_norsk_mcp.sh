@@ -124,9 +124,16 @@ if (!wsUrl || !cookieHeader) {
 
 let opened = false;
 const ws = new WebSocket(wsUrl, { headers: { Cookie: cookieHeader } });
+const connectTimeout = setTimeout(() => {
+  if (!opened) {
+    console.error("timeout");
+    ws.close();
+  }
+}, timeoutMs);
 
 ws.onopen = () => {
   opened = true;
+  clearTimeout(connectTimeout);
   console.log("connected");
   if (!stayOpen) {
     setTimeout(() => ws.close(), 1000);
@@ -146,12 +153,8 @@ ws.onerror = (err) => {
 };
 
 ws.onclose = (evt) => {
+  clearTimeout(connectTimeout);
   console.log("closed", evt.code, evt.reason || "");
   process.exit(opened ? 0 : 2);
 };
-
-setTimeout(() => {
-  console.error("timeout");
-  ws.close();
-}, timeoutMs);
 NODE
