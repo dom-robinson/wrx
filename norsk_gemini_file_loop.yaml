@@ -1,0 +1,54 @@
+__layout:
+  - id: mp4-file-loop
+    x: 176
+    y: 256
+  - id: gemini-video-report
+    x: 544
+    y: 320
+  - id: preview
+    x: 768
+    y: 128
+__globalConfig: {}
+components:
+  - type: input.file
+    config:
+      displayName: mp4-file-loop
+      sourceName: file-source
+      notes: 'Set initialFilename to a specific MP4 in /data/media/mp4 if wildcards are not supported.'
+      initialFilename: /data/media/mp4/*.mp4
+      initialLoop: true
+      initialStart: playing
+      id: mp4-file-loop
+    subscriptions: []
+  - type: processor.gemini-poc
+    config:
+      displayName: gemini-video-report
+      systemInstruction: Report what is happening in the video.
+      api: live
+      model: gemini-2.0-flash-exp
+      notes: ""
+      id: gemini-video-report
+    subscriptions:
+      - source: mp4-file-loop
+        streams:
+          type: take-first-stream
+          filter:
+            - media: video
+            - media: audio
+  - type: output.preview
+    config:
+      displayName: preview
+      previewMode: image
+      showPreview: true
+      jitterBuffer:
+        bufferDelayMs: 500
+      notes: ""
+      makeProgram: true
+      id: preview
+    subscriptions:
+      - source: mp4-file-loop
+        streams:
+          type: take-first-stream
+          filter:
+            - media: video
+            - media: audio
