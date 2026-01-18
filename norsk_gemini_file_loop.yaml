@@ -14,8 +14,8 @@ components:
     config:
       displayName: mp4-file-loop
       sourceName: file-source
-      notes: 'Set initialFilename to a specific MP4 in /data/media/mp4 if wildcards are not supported.'
-      initialFilename: /data/media/mp4/*.mp4
+      notes: 'Replace initialFilename with a file from /data/media/mp4 when available.'
+      initialFilename: /data/media/action.mp4
       initialLoop: true
       initialStart: playing
       id: mp4-file-loop
