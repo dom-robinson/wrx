@@ -89,7 +89,7 @@ fi
 cookie_header="$(
   node - <<'NODE' "$cookie_jar"
 const fs = require("fs");
-const jarPath = process.argv[1];
+const jarPath = process.argv[2];
 const lines = fs.readFileSync(jarPath, "utf8").split("\n");
 const line = lines.find((l) => l && l.includes("\tauthelia_session\t"));
 if (!line) process.exit(2);
